@@ -1,0 +1,174 @@
+<div class="container mt-5" *ngIf="!IsAuthenticated">
+  <img
+    src="../../../assets/img/portada.svg"
+    class="img-fluid"
+    alt="image social network"
+  />
+</div>
+
+<div *ngIf="IsAuthenticated">
+  <div
+    class="offcanvas offcanvas-end text-bg-dark"
+    tabindex="-1"
+    id="offcanvasRight"
+    aria-labelledby="offcanvasDarkLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">CHAT</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+        style="background-color: white"
+      ></button>
+    </div>
+    <div class="offcanvas-body">AQUI VAN LOS USERS ONLINE</div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-lg-7 offset-lg-1 col-md-7 offset-md-1 col-sm-7 offset-sm-1"
+      >
+        <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+          <div class="card">
+            <div class="card-body">
+              <img
+                [src]="(userHome$ | async)?.image"
+                class="rounded-circle mb-2"
+                height="50"
+                width="50"
+                alt="Black and White Portrait of a Man"
+                loading="lazy"
+                *ngIf="(userHome$ | async)?.image !== null"
+              />
+
+              <img
+                src="../../../assets/img/perfilH.png"
+                class="rounded-circle mb-2"
+                height="50"
+                width="50"
+                alt="Black and White Portrait of a Man"
+                loading="lazy"
+                *ngIf="
+                  (userHome$ | async)?.image === null &&
+                  (userHome$ | async)?.sexo === 'Masculino'
+                "
+              />
+
+              <img
+                src="../../../assets/img/perfilM.png"
+                class="rounded-circle mb-2"
+                height="50"
+                width="50"
+                alt="Black and White Portrait of a Man"
+                loading="lazy"
+                *ngIf="
+                  (userHome$ | async)?.image === null &&
+                  (userHome$ | async)?.sexo === 'Femenino'
+                "
+              />
+
+              <textarea
+                class="form-control mb-2"
+                id="textPublish"
+                rows="1"
+                placeholder="What do you want to publish?"
+              ></textarea>
+              <div id="publishButton">
+                <button type="button" class="btn btn-info">Add Picture</button>
+                <button type="button" class="btn btn-success ms-1">
+                  Publish
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Sunset</h5>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum
+                similique repellat a laborum, rerum voluptates ipsam eos quo
+                tempore iusto dolore modi dolorum in pariatur. Incidunt
+                repellendus praesentium quae!
+              </p>
+              <p class="card-text start-0">
+                <small class="text-muted"
+                  ><i class="fas fa-eye"></i>1000<i class="far fa-user"></i
+                  >admin<i class="fas fa-calendar-alt"></i>Jan 20, 2018</small
+                >
+              </p>
+              <a href="" class="btn btn-outline-success btn-sm">Comment</a>
+              <a href="" class="btn btn-outline-danger btn-sm"
+                ><i class="far fa-heart"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+          <div class="card">
+            <img
+              src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
+              alt=""
+              class="card-img-top"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Sunset</h5>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum
+                similique repellat a laborum, rerum voluptates ipsam eos quo
+                tempore iusto dolore modi dolorum in pariatur. Incidunt
+                repellendus praesentium quae!
+              </p>
+              <p class="card-text">
+                <small class="text-muted"
+                  ><i class="fas fa-eye"></i>1000<i class="far fa-user"></i
+                  >admin<i class="fas fa-calendar-alt"></i>Jan 20, 2018</small
+                >
+              </p>
+              <a href="" class="btn btn-outline-success btn-sm">Comment</a>
+              <a href="" class="btn btn-outline-danger btn-sm"
+                ><i class="far fa-heart"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card mt-3" style="width: 18rem">
+            <div class="card-body">
+              <h1 class="card-title" style="font-weight: 900; color: blue">
+                <i class="fa-solid fa-eye"></i>&nbsp; Followers 450
+              </h1>
+              <hr />
+              <h1 class="card-title" style="font-weight: 900; color: blue">
+                <i class="fa-solid fa-users"></i>&nbsp; Following 1322
+              </h1>
+              <hr />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <button
+            class="btn btn-primary mt-3"
+            type="button"
+            id="buttonChat"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+          >
+            Chat <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
