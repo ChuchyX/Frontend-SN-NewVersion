@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UserLogin } from 'src/app/models/User';
+import { selectLoading } from 'src/app/state/auth/auth.selectors';
 import * as AuthActions from '../../state/auth/auth.actions';
 
 @Component({
@@ -11,6 +12,7 @@ import * as AuthActions from '../../state/auth/auth.actions';
 })
 export class LoginComponent implements OnInit {
   user = new UserLogin();
+  loading$ = this.store.select(selectLoading);
 
   constructor(
     private router: Router,

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap} from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthLoginResponse } from '../models/AuthLoginResponse';
 import { RegisterUserDto } from '../models/RegisterUserDto';
 import { ReturnUser } from '../models/ReturnUser';
@@ -20,7 +20,10 @@ export class AuthService {
   }
 
   public login(user: UserLogin): Observable<AuthLoginResponse> {
-    return this.http.post<AuthLoginResponse>('https://localhost:7190/api/Auth/login', user );
+    return this.http.post<AuthLoginResponse>(
+      'https://localhost:7190/api/Auth/login',
+      user
+    );
   }
 
   public getMe(): Observable<ReturnUser> {

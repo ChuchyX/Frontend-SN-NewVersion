@@ -1,5 +1,5 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { UserState } from "./auth.UserState";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { UserState } from './auth.UserState';
 
 export const selectAuthState = createFeatureSelector<UserState>('user');
 
@@ -10,4 +10,9 @@ export const selectToken = createSelector(
 export const selectUser = createSelector(
   selectAuthState,
   (state) => state.user
+);
+
+export const selectLoading = createSelector(
+  selectAuthState,
+  (state) => state.loading
 );

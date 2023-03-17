@@ -1,6 +1,21 @@
-body{
-    background-color: #b0cdec;
+body {
+  background-color: #b0cdec;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.wall_end {
+  height: 75px;
+}

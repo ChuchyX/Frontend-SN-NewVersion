@@ -17,10 +17,7 @@ export const loginFailure = createAction(
   props<{ error: string }>()
 );
 
-
-export const getUserRequest = createAction(
-  '[Auth] Get User Request',
-);
+export const getUserRequest = createAction('[Auth] Get User Request');
 
 export const getUserSuccess = createAction(
   '[Auth] Get User Success',
@@ -31,6 +28,4 @@ export const getUserFailure = createAction(
   props<{ error: string }>()
 );
 
-export const Logout = createAction(
-  '[Auth] Logout User',
-);
+export const Logout = createAction('[Auth] Logout User');

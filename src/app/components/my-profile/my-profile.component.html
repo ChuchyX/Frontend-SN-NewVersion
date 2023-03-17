@@ -1,155 +1,169 @@
-<ng-container *ngIf="userProfile">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="card mt-3" style="width: 18rem">
-          <div class="card-body">
-            <img
-              [src]="image"
-              class="img-fluid img-thumbnail"
-              alt="..."
-              id="myProfPict"
-              *ngIf="!url"
-            />
-            <img
-              src="../../../assets/img/perfilH.png"
-              class="img-fluid img-thumbnail"
-              alt="..."
-              id="myProfPict"
-              *ngIf="url && userProfile.sexo === 'Masculino'"
-            />
-            <img
-              src="../../../assets/img/perfilM.png"
-              class="img-fluid img-thumbnail"
-              alt="..."
-              id="myProfPict"
-              *ngIf="url && userProfile.sexo === 'Femenino'"
-            />
+<div class="container" *ngIf="!loading">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <div class="card mt-3" style="width: 18rem">
+        <div class="card-body">
+          <img
+            [src]="image"
+            class="img-fluid img-thumbnail"
+            alt="..."
+            id="myProfPict"
+            *ngIf="(userProfile$ | async)?.image !== null"
+          />
+          <img
+            src="../../../assets/img/perfilH.png"
+            class="img-fluid img-thumbnail"
+            alt="..."
+            id="myProfPict"
+            *ngIf="
+              (userProfile$ | async)?.image === null &&
+              (userProfile$ | async)?.sexo === 'Masculino'
+            "
+          />
+          <img
+            src="../../../assets/img/perfilM.png"
+            class="img-fluid img-thumbnail"
+            alt="..."
+            id="myProfPict"
+            *ngIf="
+              (userProfile$ | async)?.image === null &&
+              (userProfile$ | async)?.sexo === 'Femenino'
+            "
+          />
 
-            <div class="file-select mt-2" id="src-file1">
-              <input
-                type="file"
-                name="src-file1"
-                aria-label="Archivo"
-                class="btn btn-success ms-1 w-100 mt-2"
-                (change)="handleFileInput($event)"
-                accept=".jpg"
-                requiredFileType="image/png"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="card mt-1" style="width: 18rem">
-          <div class="card-body">
-            <h1 class="card-title" style="font-weight: 900; color: blue">
-              <i class="fa-solid fa-user"></i>&nbsp;Username:
-              {{ userProfile.username }}
-            </h1>
-            <hr />
-            <h1 class="card-title" style="font-weight: 900; color: blue">
-              <i class="fa-solid fa-envelope"></i> &nbsp;{{ userProfile.email }}
-            </h1>
-            <hr />
-            <h1 class="card-title" style="font-weight: 900; color: blue">
-              <i class="fa-solid fa-venus-mars"></i> &nbsp;Gender:
-              {{ userProfile.sexo }}
-            </h1>
-            <hr />
-            <h1 class="card-title" style="font-weight: 900; color: blue">
-              <i class="fa-solid fa-person-cane"></i>&nbsp;Edad:
-              {{ userProfile.edad }}
-            </h1>
-            <hr />
-            <h1 class="card-title" style="font-weight: 900; color: blue">
-              <i class="fa-solid fa-eye"></i>&nbsp; Followers 450
-            </h1>
-            <hr />
-            <h1 class="card-title" style="font-weight: 900; color: blue">
-              <i class="fa-solid fa-users"></i>&nbsp; Following 1322
-            </h1>
-            <hr />
+          <div class="file-select mt-2" id="src-file1">
+            <input
+              type="file"
+              name="src-file1"
+              aria-label="Archivo"
+              class="btn btn-success ms-1 w-100 mt-2"
+              (change)="handleFileInput($event)"
+              accept=".jpg"
+              requiredFileType="image/png"
+            />
           </div>
         </div>
       </div>
 
-      <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="card mt-3">
-          <div class="card-body">
-            <h5 class="card-title">Sunset</h5>
-            <p class="card-text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum
-              similique repellat a laborum, rerum voluptates ipsam eos quo
-              tempore iusto dolore modi dolorum in pariatur. Incidunt
-              repellendus praesentium quae!
-            </p>
-            <p class="card-text start-0">
-              <small class="text-muted"
-                ><i class="fas fa-eye"></i>1000<i class="far fa-user"></i
-                >admin<i class="fas fa-calendar-alt"></i>Jan 20, 2018</small
-              >
-            </p>
-            <a href="" class="btn btn-outline-success btn-sm">Comment</a>
-            <a href="" class="btn btn-outline-danger btn-sm"
-              ><i class="far fa-heart"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="card mt-3">
-          <img
-            src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
-            alt=""
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Sunset</h5>
-            <p class="card-text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum
-              similique repellat a laborum, rerum voluptates ipsam eos quo
-              tempore iusto dolore modi dolorum in pariatur. Incidunt
-              repellendus praesentium quae!
-            </p>
-            <p class="card-text">
-              <small class="text-muted"
-                ><i class="fas fa-eye"></i>1000<i class="far fa-user"></i
-                >admin<i class="fas fa-calendar-alt"></i>Jan 20, 2018</small
-              >
-            </p>
-            <a href="" class="btn btn-outline-success btn-sm">Comment</a>
-            <a href="" class="btn btn-outline-danger btn-sm"
-              ><i class="far fa-heart"></i
-            ></a>
-          </div>
-        </div>
-
-        <div class="card mt-3">
-          <img
-            src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
-            alt=""
-            class="card-img-top"
-          />
-          <div class="card-body">
-            <h5 class="card-title">Sunset</h5>
-            <p class="card-text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum
-              similique repellat a laborum, rerum voluptates ipsam eos quo
-              tempore iusto dolore modi dolorum in pariatur. Incidunt
-              repellendus praesentium quae!
-            </p>
-            <p class="card-text">
-              <small class="text-muted"
-                ><i class="fas fa-eye"></i>1000<i class="far fa-user"></i
-                >admin<i class="fas fa-calendar-alt"></i>Jan 20, 2018</small
-              >
-            </p>
-            <a href="" class="btn btn-outline-success btn-sm">Comment</a>
-            <a href="" class="btn btn-outline-danger btn-sm"
-              ><i class="far fa-heart"></i
-            ></a>
-          </div>
+      <div class="card mt-1" style="width: 18rem">
+        <div class="card-body">
+          <h1 class="card-title" style="font-weight: 900; color: blue">
+            <i class="fa-solid fa-user"></i>&nbsp;Username:
+            {{ (userProfile$ | async)?.username }}
+          </h1>
+          <hr />
+          <h1 class="card-title" style="font-weight: 900; color: blue">
+            <i class="fa-solid fa-envelope"></i> &nbsp;{{
+              (userProfile$ | async)?.email
+            }}
+          </h1>
+          <hr />
+          <h1 class="card-title" style="font-weight: 900; color: blue">
+            <i class="fa-solid fa-venus-mars"></i> &nbsp;Gender:
+            {{ (userProfile$ | async)?.sexo }}
+          </h1>
+          <hr />
+          <h1 class="card-title" style="font-weight: 900; color: blue">
+            <i class="fa-solid fa-person-cane"></i>&nbsp;Edad:
+            {{ (userProfile$ | async)?.edad }}
+          </h1>
+          <hr />
+          <h1 class="card-title" style="font-weight: 900; color: blue">
+            <i class="fa-solid fa-eye"></i>&nbsp; Followers 450
+          </h1>
+          <hr />
+          <h1 class="card-title" style="font-weight: 900; color: blue">
+            <i class="fa-solid fa-users"></i>&nbsp; Following 1322
+          </h1>
+          <hr />
         </div>
       </div>
     </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-8">
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Sunset</h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum
+            similique repellat a laborum, rerum voluptates ipsam eos quo tempore
+            iusto dolore modi dolorum in pariatur. Incidunt repellendus
+            praesentium quae!
+          </p>
+          <p class="card-text start-0">
+            <small class="text-muted"
+              ><i class="fas fa-eye"></i>1000<i class="far fa-user"></i>admin<i
+                class="fas fa-calendar-alt"
+              ></i
+              >Jan 20, 2018</small
+            >
+          </p>
+          <a href="" class="btn btn-outline-success btn-sm">Comment</a>
+          <a href="" class="btn btn-outline-danger btn-sm"
+            ><i class="far fa-heart"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <img
+          src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
+          alt=""
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Sunset</h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum
+            similique repellat a laborum, rerum voluptates ipsam eos quo tempore
+            iusto dolore modi dolorum in pariatur. Incidunt repellendus
+            praesentium quae!
+          </p>
+          <p class="card-text">
+            <small class="text-muted"
+              ><i class="fas fa-eye"></i>1000<i class="far fa-user"></i>admin<i
+                class="fas fa-calendar-alt"
+              ></i
+              >Jan 20, 2018</small
+            >
+          </p>
+          <a href="" class="btn btn-outline-success btn-sm">Comment</a>
+          <a href="" class="btn btn-outline-danger btn-sm"
+            ><i class="far fa-heart"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <img
+          src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
+          alt=""
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Sunset</h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum
+            similique repellat a laborum, rerum voluptates ipsam eos quo tempore
+            iusto dolore modi dolorum in pariatur. Incidunt repellendus
+            praesentium quae!
+          </p>
+          <p class="card-text">
+            <small class="text-muted"
+              ><i class="fas fa-eye"></i>1000<i class="far fa-user"></i>admin<i
+                class="fas fa-calendar-alt"
+              ></i
+              >Jan 20, 2018</small
+            >
+          </p>
+          <a href="" class="btn btn-outline-success btn-sm">Comment</a>
+          <a href="" class="btn btn-outline-danger btn-sm"
+            ><i class="far fa-heart"></i
+          ></a>
+        </div>
+      </div>
+      <div class="wall_end"></div>
+    </div>
   </div>
-</ng-container>
+</div>
+<app-spinner *ngIf="loading"></app-spinner>

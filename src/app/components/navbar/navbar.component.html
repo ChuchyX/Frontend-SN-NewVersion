@@ -40,118 +40,120 @@
       </div>
 
       <div class="d-flex align-items-center" *ngIf="IsAuthenticated">
-          <div class="dropdown" style="color: white; margin-right: 20px">
-            <a
-              href="#"
-              class="nav-link dropdown-toggle"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <mat-icon
-                matBadge="7"
-                matBadgeColor="warn"
-                matBadgeOverlap="false"
-              >
-                <i class="fa-solid fa-message"></i>
-              </mat-icon>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Message 1</a></li>
-              <li><a class="dropdown-item" href="#">Message 2</a></li>
-              <li><a class="dropdown-item" href="#">Message 3</a></li>
-            </ul>
-          </div>
+        <div class="dropdown" style="color: white; margin-right: 20px">
+          <a
+            href="#"
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <mat-icon matBadge="7" matBadgeColor="warn" matBadgeOverlap="false">
+              <i class="fa-solid fa-message"></i>
+            </mat-icon>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Message 1</a></li>
+            <li><a class="dropdown-item" href="#">Message 2</a></li>
+            <li><a class="dropdown-item" href="#">Message 3</a></li>
+          </ul>
+        </div>
 
-          <div class="dropdown" style="color: white; margin-right: 20px">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
+        <div class="dropdown" style="color: white; margin-right: 20px">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <mat-icon
+              matBadge="15"
+              matBadgeColor="warn"
+              matBadgeOverlap="false"
             >
-              <mat-icon
-                matBadge="15"
-                matBadgeColor="warn"
-                matBadgeOverlap="false"
-              >
-                <i class="fa-solid fa-bell"></i>
-              </mat-icon>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div>
+              <i class="fa-solid fa-bell"></i>
+            </mat-icon>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
 
-          <div class="dropdown" style="color: white; margin-right: 20px">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img
-                [src]="(userNav$ | async)?.image"
-                class="rounded-circle"
-                height="25"
-                width="25"
-                alt="Black and White Portrait of a Man"
-                loading="lazy"
-                *ngIf="(userNav$ | async)?.image !== null"
-              />
-              <img
-                src="../../../assets/img/perfilH.png"
-                class="rounded-circle"
-                height="25"
-                width="25"
-                alt="Black and White Portrait of a Man"
-                loading="lazy"
-                *ngIf="(userNav$ | async)?.image === null &&
-                (userNav$ | async)?.sexo === 'Masculino'"
-              />
-              <img
-                src="../../../assets/img/perfilM.png"
-                class="rounded-circle"
-                height="25"
-                width="25"
-                alt="Black and White Portrait of a Man"
-                loading="lazy"
-                *ngIf="(userNav$ | async)?.image === null &&
-                (userNav$ | async)?.sexo === 'Femenino'"
-              />
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <span class="dropdown-item"> &nbsp; {{ (userNav$ | async)?.email }} </span>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  [routerLink]="['/myprofile']"
-                  style="cursor: pointer"
-                >
-                  <i class="fa-solid fa-user"></i> &nbsp; Profile
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  <i class="fa-solid fa-gear"></i> &nbsp; Settings
-                </a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item logout" (click)="Logout()">
-                  <i class="fa-solid fa-right-from-bracket"></i> &nbsp; Logout
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="dropdown" style="color: white; margin-right: 20px">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              [src]="image"
+              class="rounded-circle"
+              height="25"
+              width="25"
+              alt="Black and White Portrait of a Man"
+              loading="lazy"
+              *ngIf="(userNav$ | async)?.image !== null"
+            />
+            <img
+              src="../../../assets/img/perfilH.png"
+              class="rounded-circle"
+              height="25"
+              width="25"
+              alt="Black and White Portrait of a Man"
+              loading="lazy"
+              *ngIf="
+                (userNav$ | async)?.image === null &&
+                (userNav$ | async)?.sexo === 'Masculino'
+              "
+            />
+            <img
+              src="../../../assets/img/perfilM.png"
+              class="rounded-circle"
+              height="25"
+              width="25"
+              alt="Black and White Portrait of a Man"
+              loading="lazy"
+              *ngIf="
+                (userNav$ | async)?.image === null &&
+                (userNav$ | async)?.sexo === 'Femenino'
+              "
+            />
+          </a>
+          <ul class="dropdown-menu">
+            <li class="email_navbar">
+              <span class="dropdown-item">
+                &nbsp; {{ (userNav$ | async)?.username }}
+              </span>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                [routerLink]="['/myprofile']"
+                style="cursor: pointer"
+              >
+                <i class="fa-solid fa-user"></i> &nbsp; Profile
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class="fa-solid fa-gear"></i> &nbsp; Settings
+              </a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item logout" (click)="Logout()">
+                <i class="fa-solid fa-right-from-bracket"></i> &nbsp; Logout
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

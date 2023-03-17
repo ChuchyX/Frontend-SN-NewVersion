@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, of, exhaustMap, map, tap, mergeMap } from 'rxjs';
@@ -11,7 +10,7 @@ import * as AuthActions from './auth.actions';
 @Injectable()
 export class AuthEffects {
   user: UserLogin;
-  userChangeImg : ReturnUser;
+  userChangeImg: ReturnUser;
   loginRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.loginRequest),
@@ -38,7 +37,6 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-
   getUserRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.getUserRequest),
@@ -54,6 +52,6 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
 }

@@ -5,3 +5,7 @@
 .logout {
   cursor: pointer;
 }
+
+.email_navbar:hover {
+  cursor: default;
+}

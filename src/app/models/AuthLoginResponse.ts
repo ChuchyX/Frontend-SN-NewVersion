@@ -1,6 +1,6 @@
-import { ReturnUser } from "./ReturnUser";
+import { ReturnUser } from './ReturnUser';
 
-export interface AuthLoginResponse { 
-    user: ReturnUser;
-    token: string;
+export interface AuthLoginResponse {
+  user: ReturnUser;
+  token: string;
 }
