@@ -38,3 +38,11 @@
 #src-file1::before {
   content: "Cambiar Profile Picture";
 }
+
+@media (min-width: 480px) and (max-width: 767px){
+
+  .panelProfile{
+    position: relative;
+    left: 100px;
+  }
+}
