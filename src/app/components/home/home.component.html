@@ -75,10 +75,25 @@
                 id="textPublish"
                 rows="1"
                 placeholder="What do you want to publish?"
+                [(ngModel)]="content"
               ></textarea>
               <div id="publishButton">
-                <button type="button" class="btn btn-info">Add Picture</button>
-                <button type="button" class="btn btn-success ms-1">
+                <div class="file-select mt-2" id="src-file1">
+                  <input
+                    type="file"
+                    name="src-file1"
+                    aria-label="Archivo"
+                    class="btn btn-success ms-1 w-100 mt-2"
+                    (change)="onFileSelected($event)"
+                    accept=".jpg"
+                    requiredFileType="image/png"
+                  />
+                </div>
+                <button type="button" class="btn btn-info">
+
+                  add picture
+                </button>
+                <button type="button" class="btn btn-success ms-1" (click)="subirPost()">
                   Publish
                 </button>
               </div>

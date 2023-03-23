@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { UserState } from 'src/app/state/auth/auth.UserState';
 import { selectUser } from 'src/app/state/auth/auth.selectors';
 import { Subscription } from 'rxjs';
+import { PostsService } from 'src/app/services/posts.service';
+import { PostDto } from 'src/app/models/PostDto';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +17,25 @@ export class HomeComponent implements OnInit, OnDestroy {
   image: any;
   private subscription: Subscription;
 
+  public selectedFile: File;
+  content: string;
+
+onFileSelected(event: Event): void {
+  let files = (event.target as HTMLInputElement).files;
+  this.selectedFile = files?.item(0) as File;
+}
+
+subirPost()
+{
+  this.postsService.addPost(this.content, this.selectedFile).subscribe(r => {
+    console.log(r);
+  })
+}
+
   constructor(
     private sanitizer: DomSanitizer,
-    private store: Store<UserState>
+    private store: Store<UserState>,
+    private postsService: PostsService
   ) {}
 
   ngOnInit(): void {
@@ -40,4 +58,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   public get IsAuthenticated(): boolean {
     return localStorage.getItem('authToken') !== null;
   }
+
+
+
+
 }
