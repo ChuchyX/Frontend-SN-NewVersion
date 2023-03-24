@@ -87,12 +87,9 @@
                     (change)="onFileSelected($event)"
                     accept=".jpg"
                     requiredFileType="image/png"
+                    #miInput
                   />
                 </div>
-                <button type="button" class="btn btn-info">
-
-                  add picture
-                </button>
                 <button type="button" class="btn btn-success ms-1" (click)="subirPost()">
                   Publish
                 </button>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { UserState } from 'src/app/state/auth/auth.UserState';
@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   image: any;
   private subscription: Subscription;
 
+  @ViewChild('miInput') miInput: any;
+
   public selectedFile: File;
   content: string;
 
@@ -28,6 +30,8 @@ onFileSelected(event: Event): void {
 subirPost()
 {
   this.postsService.addPost(this.content, this.selectedFile).subscribe(r => {
+    this.miInput.nativeElement.value = null;
+    this.content = '';
     console.log(r);
   })
 }
@@ -50,6 +54,11 @@ subirPost()
           ).changingThisBreaksApplicationSecurity;
       }
     });
+
+
+    this.postsService.allPosts().subscribe(r => {
+      console.log(r);
+    })
   }
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
