@@ -9,6 +9,11 @@
   height: 85vh;
 }
 
+.imagePost{
+  width: 20%;
+  height: 30%;
+  margin-top: 5px;
+}
 
 .file-select {
   position: relative;

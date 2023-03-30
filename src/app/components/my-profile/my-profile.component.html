@@ -6,14 +6,14 @@
           <img
             [src]="image"
             class="img-fluid img-thumbnail"
-            alt="..."
+            alt="Profile Picture"
             id="myProfPict"
             *ngIf="(userProfile$ | async)?.image !== null"
           />
           <img
             src="../../../assets/img/perfilH.png"
             class="img-fluid img-thumbnail"
-            alt="..."
+            alt="Profile Picture"
             id="myProfPict"
             *ngIf="
               (userProfile$ | async)?.image === null &&
@@ -23,7 +23,7 @@
           <img
             src="../../../assets/img/perfilM.png"
             class="img-fluid img-thumbnail"
-            alt="..."
+            alt="Profile Picture"
             id="myProfPict"
             *ngIf="
               (userProfile$ | async)?.image === null &&

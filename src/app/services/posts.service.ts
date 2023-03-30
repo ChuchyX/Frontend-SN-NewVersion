@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PostDto } from '../models/PostDto';
-import { ReturnUser } from '../models/ReturnUser';
 
 @Injectable({
   providedIn: 'root'
