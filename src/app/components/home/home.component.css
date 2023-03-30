@@ -9,7 +9,7 @@
   height: 85vh;
 }
 
-.imagePost{
+.imagePost {
   width: 20%;
   height: 30%;
   margin-top: 5px;
@@ -46,8 +46,7 @@
   content: "Add a picture";
 }
 
-@media (max-width: 991px)
-{
+@media (max-width: 991px) {
   .file-select {
     margin-bottom: 5px;
   }

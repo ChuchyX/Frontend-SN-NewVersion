@@ -27,27 +27,28 @@ export class HomeComponent implements OnInit, OnDestroy {
   public selectedFile: File;
   content: string;
 
-onFileSelected(event: Event): void {
-  let files = (event.target as HTMLInputElement).files;
-  this.selectedFile = files?.item(0) as File;
+  onFileSelected(event: Event): void {
+    let files = (event.target as HTMLInputElement).files;
+    this.selectedFile = files?.item(0) as File;
 
-  const reader = new FileReader();
+    const reader = new FileReader();
     reader.onload = (e: any) => {
       this.imageView = e.target.result;
     };
     reader.readAsDataURL(this.selectedFile);
-}
+  }
 
-subirPost()
-{
-  this.postsService.addPost(this.content, this.selectedFile).subscribe(r => {
-    this.miInput.nativeElement.value = null;
-    this.content = '';
-    this.imageView = null;
-    this.postList = [...r].reverse();
-    this.ngOnInit();
-  })
-}
+  subirPost() {
+    this.postsService
+      .addPost(this.content, this.selectedFile)
+      .subscribe((r) => {
+        this.miInput.nativeElement.value = null;
+        this.content = '';
+        this.imageView = null;
+        this.postList = [...r].reverse();
+        this.ngOnInit();
+      });
+  }
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -69,9 +70,9 @@ subirPost()
       }
     });
 
-
-    this.subscriptionPosts = this.postsService.allPosts().subscribe(r => {
+    this.subscriptionPosts = this.postsService.allPosts().subscribe((r) => {
       this.postList = [...r].reverse();
+      console.log(r);
       for (let index = 0; index < this.postList.length; index++) {
         if (this.postList[index]?.image !== null) {
           this.postList[index].image =
@@ -92,9 +93,11 @@ subirPost()
               ) as any
             ).changingThisBreaksApplicationSecurity;
         }
+
+        this.postList[index].date = new Date(this.postList[index].date);
       }
       this.loading = false;
-    })
+    });
   }
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
@@ -105,7 +108,19 @@ subirPost()
     return localStorage.getItem('authToken') !== null;
   }
 
-
-
-
+  convert(date: Date): string {
+    if (date.getMonth() === 0) return 'Jan';
+    if (date.getMonth() === 1) return 'Feb';
+    if (date.getMonth() === 2) return 'Mar';
+    if (date.getMonth() === 3) return 'Apr';
+    if (date.getMonth() === 4) return 'May';
+    if (date.getMonth() === 5) return 'Jun';
+    if (date.getMonth() === 6) return 'Jul';
+    if (date.getMonth() === 7) return 'Aug';
+    if (date.getMonth() === 8) return 'Sept';
+    if (date.getMonth() === 9) return 'Oct';
+    if (date.getMonth() === 10) return 'Nov';
+    if (date.getMonth() === 11) return 'Dec';
+    return '';
+  }
 }

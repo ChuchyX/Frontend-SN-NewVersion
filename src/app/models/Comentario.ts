@@ -1,4 +1,4 @@
-import { ReturnUser } from "./ReturnUser";
+import { ReturnUser } from './ReturnUser';
 
 export class Comentario {
   id: number;
