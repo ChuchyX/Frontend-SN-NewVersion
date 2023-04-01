@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Post } from '../models/Post';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class PostsService {
   allPosts(): Observable<any>
   {
     return this.httpClient.get("https://localhost:7190/api/Auth/allposts");
+  }
+  addLike(id: number)
+  {
+    return this.httpClient.post("https://localhost:7190/api/Auth/addlike", { id: id });
   }
 
 }

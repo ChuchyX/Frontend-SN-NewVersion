@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loading = false;
   private subscription: Subscription;
   private subscriptionPosts: Subscription;
+  private subscriptionLikes: Subscription;
 
   @ViewChild('miInput') miInput: any;
 
@@ -39,7 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   subirPost() {
-    this.postsService
+    this.subscriptionPosts = this.postsService
       .addPost(this.content, this.selectedFile)
       .subscribe((r) => {
         this.miInput.nativeElement.value = null;
@@ -102,6 +103,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
     if (this.subscriptionPosts) this.subscriptionPosts.unsubscribe();
+    if (this.subscriptionLikes) this.subscriptionLikes.unsubscribe();
   }
 
   public get IsAuthenticated(): boolean {
@@ -122,5 +124,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (date.getMonth() === 10) return 'Nov';
     if (date.getMonth() === 11) return 'Dec';
     return '';
+  }
+
+  addLike(post: Post)
+  {
+    this.subscriptionLikes = this.postsService.addLike(post.id).subscribe(r => {});
+    const index = this.postList.findIndex(p => p.id === post.id);
+    this.postList[index].likes++;
   }
 }
