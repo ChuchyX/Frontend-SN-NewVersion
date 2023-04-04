@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Comentario } from '../models/Comentario';
+import { ComentarioDto } from '../models/ComentarioDto';
 import { Post } from '../models/Post';
 
 @Injectable({
@@ -27,6 +29,10 @@ export class PostsService {
   addLike(id: number)
   {
     return this.httpClient.post("https://localhost:7190/api/Auth/addlike", { id: id });
+  }
+  addComment(c: ComentarioDto) : Observable<Comentario[]>
+  {
+    return this.httpClient.post<Comentario[]>("https://localhost:7190/api/Auth/addcomment", c);
   }
 
 }

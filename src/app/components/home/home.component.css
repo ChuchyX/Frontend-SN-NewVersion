@@ -19,6 +19,30 @@
   position: relative;
 }
 
+.comments_container
+{
+  width: 95%;
+  margin-left: 20px;
+}
+
+.comment{
+  display: flex;
+  align-items: center;
+  background-color: #b0cdec;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  padding-top: 20px;
+}
+
+.label_showComments{
+  float: right;
+}
+.label_showComments:hover{
+  cursor: pointer;
+}
+
 .file-select {
   position: relative;
   display: inline-block;

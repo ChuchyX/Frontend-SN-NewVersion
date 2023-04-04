@@ -9,4 +9,6 @@ export class Post {
   likes: number;
   comentarios: any[];
   user: ReturnUser;
+  showComments = false;
+  comment = '';
 }

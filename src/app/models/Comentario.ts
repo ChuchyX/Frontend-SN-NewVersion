@@ -5,5 +5,6 @@ export class Comentario {
   content: string;
   date: Date;
   likes: number;
+  since: string;
   user: ReturnUser;
 }

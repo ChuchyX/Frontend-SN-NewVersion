@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
 import { PostDto } from 'src/app/models/PostDto';
 import { Post } from 'src/app/models/Post';
+import { ComentarioDto } from 'src/app/models/ComentarioDto';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private subscriptionPosts: Subscription;
   private subscriptionLikes: Subscription;
+  private subscriptionComment: Subscription;
 
   @ViewChild('miInput') miInput: any;
 
@@ -96,6 +98,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
 
         this.postList[index].date = new Date(this.postList[index].date);
+
+        for (let index2 = 0; index2 < this.postList[index].comentarios.length; index2++)
+        {
+          this.postList[index].comentarios[index2].date = new Date(this.postList[index].comentarios[index2].date);
+        }
       }
       this.loading = false;
     });
@@ -104,6 +111,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.subscription) this.subscription.unsubscribe();
     if (this.subscriptionPosts) this.subscriptionPosts.unsubscribe();
     if (this.subscriptionLikes) this.subscriptionLikes.unsubscribe();
+    if (this.subscriptionComment) this.subscriptionComment.unsubscribe();
   }
 
   public get IsAuthenticated(): boolean {
@@ -132,4 +140,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     const index = this.postList.findIndex(p => p.id === post.id);
     this.postList[index].likes++;
   }
+
+  addComment(post: Post)
+  {
+    const index = this.postList.findIndex(p => p.id === post.id);
+    let com = new ComentarioDto();
+    com.content = post.comment;
+    post.comment = '';
+    com.postid = this.postList[index].id;
+    com.userid = this.postList[index].user.id;
+    this.subscriptionComment = this.postsService.addComment(com).subscribe((c) => {
+      this.postList[index].comentarios = [...c].reverse();
+
+        for (let index2 = 0; index2 < this.postList[index].comentarios.length; index2++)
+        {
+          this.postList[index].comentarios[index2].date = new Date(this.postList[index].comentarios[index2].date);
+        }
+    });
+  }
+
+
+  showComments(post: Post){
+    const index = this.postList.findIndex(p => p.id === post.id);
+    this.postList[index].showComments = !this.postList[index].showComments;
+  }
+
+
 }

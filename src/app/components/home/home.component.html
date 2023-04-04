@@ -167,13 +167,52 @@
                       {{ post.date.getFullYear() }} | {{ post.since }}</small
                     >
                   </p>
-                  <a href="" class="btn btn-outline-success btn-sm">Comment</a>
+
                   <a class="btn btn-outline-danger btn-sm likes" (click)="addLike(post)">
                     <i class="far fa-heart"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" *ngIf="post.likes > 0">
                         {{post.likes}}
                     </span>
                   </a>
+
+                    <textarea
+                    class="form-control mb-2 mt-3"
+                    id="textPublish"
+                    rows="1"
+                    placeholder="Leave a comment here"
+                    [(ngModel)]="post.comment"
+                  ></textarea>
+                  <div id="publishButton">
+
+                    <button
+                      type="button"
+                      class="btn btn-success ms-1"
+                      (click)="addComment(post)"
+                    >
+                      Comment
+                    </button>
+                  </div>
+                </div>
+
+
+                <div class="comments_container" *ngIf="post.comentarios.length > 0">
+                  <a class="label_showComments" (click)="showComments(post)">Show Comments</a>
+
+                  <ng-container *ngIf="post.showComments">
+                    <div class="comment" *ngFor="let com of post.comentarios">
+                      <p class="pcomment">
+                        {{com.content}}
+                      </p>
+                      <p>
+                        <small class="text-muted"
+                          ><i class="fas fa-calendar-alt"></i
+                          >{{ convert(com.date) }} {{ com.date.getDate() }},
+                          {{ com.date.getFullYear() }} | {{ com.since }}</small
+                        >
+                      </p>
+                    </div>
+                  </ng-container>
+
                 </div>
               </div>
             </div>
