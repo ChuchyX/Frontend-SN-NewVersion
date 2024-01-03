@@ -8,6 +8,7 @@ import { PostsService } from 'src/app/services/posts.service';
 import { PostDto } from 'src/app/models/PostDto';
 import { Post } from 'src/app/models/Post';
 import { ComentarioDto } from 'src/app/models/ComentarioDto';
+import { RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-home',
