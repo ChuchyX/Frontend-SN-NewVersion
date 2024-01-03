@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { UserLogin } from 'src/app/models/User';
 import { selectLoading } from 'src/app/state/auth/auth.selectors';
 import * as AuthActions from '../../state/auth/auth.actions';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,19 +17,25 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private store: Store
+    private store: Store,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {}
 
   async Login() {
-    const credentials =
-    {
-      email: this.user.email,
-      password: this.user.password
-    }
+    // const credentials =
+    // {
+    //   email: this.user.email,
+    //   password: this.user.password
+    // }
 
-    this.store.dispatch(AuthActions.loginRequest({ credentials }));
+    // this.store.dispatch(AuthActions.loginRequest({ credentials }));
+    this.authService.login(this.user).subscribe(res => {
+      console.log("resultado login: ",res)
+    });
+
+
   }
 
 }

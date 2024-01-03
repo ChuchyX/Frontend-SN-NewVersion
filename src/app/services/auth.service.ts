@@ -14,19 +14,19 @@ export class AuthService {
 
   public register(user: RegisterUserDto): Observable<any> {
     return this.http.post<any>(
-      'https://localhost:7190/api/Auth/register',
+      'https://localhost:7026/api/User/register',
       user
     );
   }
 
   public login(user: UserLogin): Observable<AuthLoginResponse> {
     return this.http.post<AuthLoginResponse>(
-      'https://localhost:7190/api/Auth/login',
+      'https://localhost:7026/api/User/login',
       user
     );
   }
 
   public getMe(): Observable<ReturnUser> {
-    return this.http.get<ReturnUser>('https://localhost:7190/api/Auth/getme');
+    return this.http.get<ReturnUser>('https://localhost:7026/api/User/getme');
   }
 }
